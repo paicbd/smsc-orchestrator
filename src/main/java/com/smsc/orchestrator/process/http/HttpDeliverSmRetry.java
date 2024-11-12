@@ -51,6 +51,7 @@ public class HttpDeliverSmRetry {
 
     public void createDlrPreProcess(Records.DlrRequest dlrRequest) {
         CompletableFuture.runAsync(() -> {
+            log.debug("Processing DLR for messageId {}", dlrRequest.messageId());
             String resultEvent = jedisCluster.hget("http_submit_sm_result", dlrRequest.messageId());
             if (resultEvent == null) {
                 log.error("Getting null messageId -> {}", dlrRequest.messageId());
@@ -75,6 +76,8 @@ public class HttpDeliverSmRetry {
             preProcess.setOptionalParameters(dlrRequest.optionalParameters());
             preProcess.setSystemId(responseEvent.systemId());
             preProcess.setParentId(responseEvent.parentId());
+            preProcess.setDestProtocol(responseEvent.originProtocol());
+            preProcess.setDestNetworkId(responseEvent.originNetworkId());
 
             if ("SMPP".equalsIgnoreCase(responseEvent.originProtocol())) {
                 DeliveryReceipt receipt = new DeliveryReceipt(dlrRequest.messageId(), 1, 1,

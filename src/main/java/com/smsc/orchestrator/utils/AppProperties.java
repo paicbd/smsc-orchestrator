@@ -14,13 +14,13 @@ public class AppProperties {
     private List<String> redisNodes;
 
     @Value("${redis.threadPool.maxTotal}")
-    private int maxTotal = 20;
+    private int maxTotal;
 
     @Value("${redis.threadPool.maxIdle}")
-    private int maxIdle = 20;
+    private int maxIdle;
 
     @Value("${redis.threadPool.minIdle}")
-    private int minIdle = 1;
+    private int minIdle;
 
     @Value("${redis.threadPool.blockWhenExhausted}")
     private boolean blockWhenExhausted;
