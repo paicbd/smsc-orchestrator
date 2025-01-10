@@ -1,5 +1,6 @@
 package com.smsc.orchestrator.utils;
 
+import com.paicbd.smsc.utils.Generated;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -8,22 +9,38 @@ import java.util.List;
 
 @Getter
 @Component
+@Generated
 public class AppProperties {
     // Redis
     @Value("#{'${redis.cluster.nodes}'.split(',')}")
     private List<String> redisNodes;
 
     @Value("${redis.threadPool.maxTotal}")
-    private int maxTotal;
+    private int redisMaxTotal;
 
     @Value("${redis.threadPool.maxIdle}")
-    private int maxIdle;
+    private int redisMaxIdle;
 
     @Value("${redis.threadPool.minIdle}")
-    private int minIdle;
+    private int redisMinIdle;
 
     @Value("${redis.threadPool.blockWhenExhausted}")
-    private boolean blockWhenExhausted;
+    private boolean redisBlockWhenExhausted;
+
+    @Value("${redis.connection.timeout:0}")
+    private int redisConnectionTimeout;
+
+    @Value("${redis.so.timeout:0}")
+    private int redisSoTimeout;
+
+    @Value("${redis.maxAttempts:0}")
+    private int redisMaxAttempts;
+
+    @Value("${redis.connection.password:}")
+    private String redisPassword;
+
+    @Value("${redis.connection.user:}")
+    private String redisUser;
 
     // Smpp Traffic
     @Value("${smpp.redis.submitSm.queue}")
