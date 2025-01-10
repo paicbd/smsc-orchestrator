@@ -20,10 +20,10 @@ class AppPropertiesTest {
     @BeforeEach
     void setUp() throws Exception {
         injectField("redisNodes", Arrays.asList("node1", "node2", "node3"));
-        injectField("maxTotal", 20);
-        injectField("maxIdle", 20);
-        injectField("minIdle", 1);
-        injectField("blockWhenExhausted", true);
+        injectField("redisMaxTotal", 20);
+        injectField("redisMaxIdle", 20);
+        injectField("redisMinIdle", 1);
+        injectField("redisBlockWhenExhausted", true);
         injectField("smppSubmitSmQueue", "smpp_message");
         injectField("smppWorkers", 10);
         injectField("smppBatchSizePerWorker", 5);
@@ -60,10 +60,10 @@ class AppPropertiesTest {
     void testProperties() {
         List<String> expectedRedisNodes = Arrays.asList("node1", "node2", "node3");
         assertEquals(expectedRedisNodes, appProperties.getRedisNodes());
-        assertEquals(20, appProperties.getMaxTotal());
-        assertEquals(20, appProperties.getMaxIdle());
-        assertEquals(1, appProperties.getMinIdle());
-        assertTrue(appProperties.isBlockWhenExhausted());
+        assertEquals(20, appProperties.getRedisMaxTotal());
+        assertEquals(20, appProperties.getRedisMaxIdle());
+        assertEquals(1, appProperties.getRedisMinIdle());
+        assertTrue(appProperties.isRedisBlockWhenExhausted());
         assertEquals("smpp_message", appProperties.getSmppSubmitSmQueue());
         assertEquals(10, appProperties.getSmppWorkers());
         assertEquals(5, appProperties.getSmppBatchSizePerWorker());

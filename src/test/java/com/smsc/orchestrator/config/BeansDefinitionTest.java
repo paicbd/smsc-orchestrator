@@ -23,10 +23,10 @@ class BeansDefinitionTest {
     @Test
     void testJedisClusterCreation() {
         when(appProperties.getRedisNodes()).thenReturn(List.of("localhost:6379", "localhost:6380"));
-        when(appProperties.getMaxTotal()).thenReturn(10);
-        when(appProperties.getMinIdle()).thenReturn(1);
-        when(appProperties.getMaxIdle()).thenReturn(5);
-        when(appProperties.isBlockWhenExhausted()).thenReturn(true);
+        when(appProperties.getRedisMaxTotal()).thenReturn(10);
+        when(appProperties.getRedisMinIdle()).thenReturn(1);
+        when(appProperties.getRedisMaxIdle()).thenReturn(5);
+        when(appProperties.isRedisBlockWhenExhausted()).thenReturn(true);
         assertNull(beansDefinition.jedisCluster());
     }
 
